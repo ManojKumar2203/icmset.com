@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Paper Submission — ICMSET</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#05293a;
+      --gold:#fac13c;
+      --muted:#6b7280;
+      --surface:#f4f6f8;
+      --white:#fff;
+      --accent:#0c6ef6;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      color:#111;
+      background:#fff;
+      -webkit-font-smoothing:antialiased;
+      line-height:1.45;
+    }
+
+    /* TOP LINE */
+    .topbar{height:6px;background:#3b2720}
+
+    /* HEADER */
+    header{
+      position:sticky;top:0;z-index:1000;background:var(--white);
+      box-shadow:0 1px 0 rgba(0,0,0,0.04);
+    }
+    .nav-wrap{
+      max-width:1200px;margin:0 auto;padding:12px 18px;
+      display:flex;align-items:center;gap:20px;justify-content:space-between;
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy)}
+    .badge{background:var(--navy);color:var(--white);padding:6px 10px;border-radius:6px;font-weight:700;font-size:13px}
+    .tag{font-weight:600;color:var(--muted);font-size:14px}
+
+    nav{display:flex;align-items:center;gap:12px}
+    .menu{display:flex;gap:6px;list-style:none;margin:0;padding:0;align-items:center}
+    .menu li{position:relative}
+    .menu a{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;text-decoration:none;
+      color:var(--muted);font-weight:600;font-size:14px;border-radius:6px;white-space:nowrap;
+    }
+    .menu a:hover,.menu .active> a{ color:var(--navy);background:rgba(5,41,58,0.04) }
+
+    /* Dropdown */
+    .dropdown{
+      position:absolute;top:calc(100% + 10px);left:0;min-width:220px;background:var(--white);
+      box-shadow:0 10px 24px rgba(2,6,23,0.12);border-radius:8px;padding:8px 0;display:none;
+    }
+    /* visible when .open present */
+    .menu li.open > .dropdown{ display:block; }
+    .dropdown .section-title{padding:8px 14px;font-weight:700;font-size:12px;color:var(--navy);text-transform:uppercase}
+    .dropdown a{display:block;padding:8px 14px;color:#333;font-size:13px}
+    .dropdown a:hover{background:var(--surface)}
+
+    .mobile-toggle{display:none;background:transparent;border:0;padding:6px;cursor:pointer}
+    .mobile-toggle svg{width:22px;height:22px;color:var(--navy)}
+
+    /* ANNOUNCEMENT (kept for consistent site feel) */
+    .announcement{
+      background:#f6f7f8;border-top:1px solid rgba(2,6,23,0.02);border-bottom:1px solid rgba(2,6,23,0.02);
+      padding:18px 22px;text-align:center;position:relative;overflow:visible;
+    }
+    .announcement .text{max-width:1100px;margin:0 auto;color:#333;font-size:14px;line-height:1.5}
+    .announcement .highlight{display:block;margin-top:10px;font-weight:800;color:#d42020;font-size:16px;letter-spacing:0.6px}
+
+    /* Page shell */
+    .page {
+      max-width:1000px;
+      margin:24px auto 80px;
+      padding:0 22px;
+    }
+
+    /* Page title */
+    .page-header{
+      text-align:center;
+      margin-bottom:18px;
+    }
+    .page-header h1{
+      margin:0;font-size:22px;font-weight:700;color:var(--navy);
+    }
+    .page-header p{
+      margin:8px 0 0;color:var(--muted);font-size:14px;
+    }
+
+    /* Content card */
+    .card{
+      background:#fbfbfb;
+      border-radius:8px;
+      padding:26px;
+      box-shadow: 0 8px 26px rgba(2,6,23,0.04);
+      border:1px solid rgba(2,6,23,0.02);
+    }
+
+    /* center image (CMT) */
+    .centered{
+      text-align:center;margin:18px 0 20px;
+    }
+    .centered img{
+      max-width:170px;height:auto;border-radius:4px;box-shadow:0 8px 20px rgba(2,6,23,0.06);
+    }
+    .small-link{display:block;font-size:12px;color:#0c6ef6;margin-top:8px;text-decoration:underline}
+
+    /* Section title for plagiarism */
+    .section-title {
+      text-align:center;
+      color:var(--gold);
+      font-weight:800;
+      font-size:22px;
+      margin:26px 0 12px;
+      letter-spacing:0.6px;
+    }
+
+    /* Turnitin area */
+    .turnitin{
+      text-align:center;margin:14px 0 18px;
+    }
+    .turnitin img{max-width:240px;height:auto;border-radius:4px;box-shadow:0 8px 18px rgba(2,6,23,0.06)}
+
+    /* Two-column layout: left details + right button / image on desktop */
+    .grid {
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:22px;
+      align-items:start;
+      margin-top:8px;
+    }
+
+    .payment {
+      color:#222;font-size:14px;
+    }
+    .payment strong {display:block;margin-bottom:8px;color:var(--navy)}
+    .payment ul{margin:6px 0 0;padding-left:18px;color:var(--muted)}
+    .payment li{margin:6px 0;font-size:14px}
+
+    /* Requisition button */
+    .req-wrap{
+      text-align:center;
+      padding-top:18px;
+    }
+    .btn{
+      display:inline-block;
+      background:#e55b50;
+      color:#fff;
+      padding:10px 16px;
+      border-radius:6px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      box-shadow:0 8px 20px rgba(229,91,80,0.12);
+    }
+    .btn:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(229,91,80,0.12)}
+
+    /* micro-help text */
+    .muted{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:12px;
+      line-height:1.4;
+    }
+
+    /* Review process */
+    .review {
+      margin-top:22px;
+      font-size:14px;
+    }
+    .review ol{padding-left:20px;margin:6px 0;color:var(--muted)}
+    .review li{margin:12px 0}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(2,6,23,0.04);padding:28px 22px;color:var(--muted);font-size:14px;background:#fff}
+
+
+    /* Responsive */
+    @media (max-width:960px){
+      .grid{grid-template-columns:1fr; }
+      .req-wrap{margin-top:10px}
+      .centered img{max-width:150px}
+      .menu{display:none}        /* hide desktop menu on small screens; we'll use mobile toggle */
+      .mobile-toggle{display:inline-flex}
+    }
+    @media (max-width:480px){
+      .page{margin:18px auto;padding:0 14px}
+      .page-header h1{font-size:18px}
+      .section-title{font-size:20px}
+    }
+
+    /* Mobile slide-in menu (keeps same styles if you want later) */
+    .mobile-menu {
+      position:fixed;
+      top:62px;
+      right:0;
+      width:280px;
+      height:calc(100% - 62px);
+      background:var(--white);
+      box-shadow:-8px 20px 40px rgba(2,6,23,0.12);
+      transform:translateX(110%);
+      transition:transform .26s ease;
+      z-index:1200;
+      padding:18px;
+      overflow:auto;
+    }
+    .mobile-menu.open{ transform:translateX(0) }
+    .mobile-menu a{ display:block; padding:10px 12px; color:var(--muted); border-radius:6px; text-decoration:none; margin-bottom:6px; font-weight:600 }
+    .mobile-menu .dropdown { position:static; box-shadow:none; padding-left:8px; display:none }
+    .mobile-menu .open > .dropdown { display:block }
+  </style>
+</head>
+<body>
+
+  <div class="topbar" aria-hidden="true"></div>
+
+  <header>
+    <div class="nav-wrap" role="banner">
+      <a class="brand" href="index.html">
+        <span class="badge">ICMSET</span>
+        <span class="tag">Conference 2026</span>
+      </a>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </button>
+
+        <!-- Desktop menu (hidden on small screens) -->
+        <nav aria-label="Main navigation">
+          <ul class="menu" id="mainMenu" role="menubar" aria-hidden="false">
+            <li><a href="index.html">Home</a></li>
+
+            <li>
+              <a href="#TRACKS" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Call For Papers ▾</a>
+              <div class="dropdown" role="menu" aria-label="Call for papers submenu">
+                <a href="paper.html">Paper</a>
+                <a href="poster-project.html">Poster / Project Demo</a>
+                <a href="proposal.html">Speakers</a>
+              </div>
+            </li>
+
+            <li><a href="paper-submission.html" class="active">Paper Submission</a></li>
+            <li><a href="important date.html">Important Dates</a></li>
+
+            <li>
+              <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Authors ▾</a>
+              <div class="dropdown" role="menu" aria-label="Call for papers submenu">
+                <a href="registation.html">Registration</a>
+                <a href="visa.html">VISA</a>
+              </div>
+            </li>
+
+            <li class="has-dropdown" id="committeesItem">
+              <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Committees ▾</a>
+              <div class="dropdown" role="menu" aria-label="Committees submenu">
+                <div class="section-title">Patrons</div>
+                <a href="partons.html">Patron</a>
+                <a href="convener.html">Convener</a>
+         `       <a href="#">Speakers</a>
+
+                <div class="section-title" style="margin-top:8px">Advisory Board</div>
+                <a href="internal.html">Internal</a>
+                <a href="international.html">International</a>
+                <a href="national.html">National</a>
+                <a href="committees.html"> Committees</a>
+
+                <div class="section-title" style="margin-top:8px">Reviewer Board</div>
+                <a href="reviewer.html">Reviewer</a>
+              </div>
+            </li>
+
+            <li><a href="publication.html">Publication</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="reviewer.html">Reviewer</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- mobile menu (slides in) -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <a href="index.html">Home</a>
+
+    <div class="mobile-item">
+      <a href="paper.html" class="mobile-dropdown-toggle">Call For Papers ▾</a>
+      <div class="dropdown">
+        <a href="paper.html">Paper</a>
+        <a href="poster-project.html">Poster / Project Demo</a>
+        <a href="proposal.html">Speakers</a>
+      </div>
+    </div>
+
+    <a href="paper-submission.html" aria-current="page">Paper Submission</a>
+    <a href="important date.html">Important Dates</a>
+
+    <div class="mobile-item">
+      <a href="registation.html" class="mobile-dropdown-toggle">Authors ▾</a>
+      <div class="dropdown">
+        <a href="registation.html">Registration</a>
+        <a href="visa.html">VISA</a>
+      </div>
+    </div>
+
+    <div class="mobile-item">
+      <a href="#" class="mobile-dropdown-toggle">Committees ▾</a>
+      <div class="dropdown">
+        <div class="section-title">Patrons</div>
+        <a href="partons.html">Patron</a>
+        <a href="convener.html">Convener</a>
+        <a href="#">Speakers</a>
+
+        <div class="section-title">Patrons</div>
+        <a href="internal.html">Internal</a>
+        <a href="international.html">International</a>
+        <a href="national.html">National</a>
+        <a href="committees.html"> Committees</a>
+
+        <div class="section-title">Patrons</div>
+        <a href="reviewer.html">Reviewer</a>
+
+      </div>
+    </div>
+
+    <a href="publication.html">Publication</a>
+    <a href="contact.html">Contact</a>
+    <a href="reviewer.html">Reviewer</a>
+  </div>
+
+  <!-- announcement -->
+  <section class="announcement" aria-hidden="true">
+    <div class="text" style="color:#ff0000; font-weight:bold;">ICMSET-2K26 — Call for papers open. See important dates for deadlines.</div>
+  </section>
+  
+  <main class="page" role="main">
+    <div class="page-header">
+      <h1>PAPER SUBMISSION</h1>
+      <p>Submissions of high quality papers in scope of conference are handled only through the CMT website at</p>
+    </div>
+
+    <div class="card" role="region" aria-label="Paper submission information">
+      <!-- CMT block -->
+      <div class="centered" aria-hidden="false">
+        <!-- If you have a local cmt logo, put the filename in src (eg. /assets/cmtlogo.png) -->
+        <img id="cmtLogo" src="image\cmtlogo.png" alt="CMT logo (replace with official image)"
+             onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/6c/cmtlogo.png'">
+        <a class="small-link" href="https://cmt3.research.microsoft.com" target="_blank" rel="noopener">
+          https://cmt3.research.microsoft.com/ (CMT submission)
+        </a>
+      </div>
+
+      <!-- PLAGIARISM -->
+      <h2 class="section-title">PLAGIARISM</h2>
+      <div class="turnitin">
+        <img id="ttnLogo" src="image\ttn.png" alt="Turnitin logo"
+             onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/6/6c/Turnitin_logo.png'">
+      </div>
+
+      <div class="grid">
+        <!-- left column: details -->
+        <div>
+          <div class="payment" aria-label="Payment details">
+            <strong>Payment Details — For Article</strong>
+            <ul>
+              <li>Max 25 pages</li>
+              <li>1st time : Rs.300 /-</li>
+              <li>2nd time : Rs.500 /-</li>
+              <li>3rd time : Rs.700 /-</li>
+            </ul>
+          </div>
+
+          <div class="muted" style="margin-top:18px">
+            Soft copy of the complete document/paper should be sent through mail to:
+            <strong style="color:var(--navy)">originalitychk@panimalar.ac.in</strong>
+            with payment proof and Requisition form.
+          </div>
+
+          <div class="review" aria-label="Review process">
+            <h3 style="margin:14px 0 8px;color:#222;font-size:16px;font-weight:700">REVIEW PROCESS</h3>
+            <ol>
+              <li>The submissions are generally reviewed for relevance with the conference scope, novelty against current state of the art, significance of the research contribution and English language.</li>
+              <li>All submitted papers will be checked for plagiarism report using Turnitin. If the paper contains more than 15% plagiarism, review process will not be carried.</li>
+              <li>ICMSET research papers are reviewed using a single-blind review process managed through CMT. Each paper is reviewed independently by two reviewers, and assigned reviewers submit their anonymous reviews through CMT.</li>
+              <li>ICMSET TPC then select the papers for conference proceeding based on reviewers score and comments.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- right column: requisition / visuals -->
+        <aside class="req-wrap" aria-label="Requisition form">
+          <div style="margin-bottom:12px;font-weight:700;color:var(--muted)">Requisition Form</div>
+          <!-- Replace href with actual requisition form path or file -->
+          <a class="btn" href="/files/requisition-form.pdf" download>REQUISITION FORM</a>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:6px 22px;">
+      <div><strong style="color:var(--navy)">ICMSET 2026</strong> — Panimalar Engineering College</div>
+      <div style="color:var(--muted);font-size:13px;">© 2026 All rights reserved</div>
+    </div>
+  </footer>
+
+  <script>
+    // MOBILE MENU
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (mobileToggle && mobileMenu) {
+      mobileToggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+        mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      // close mobile menu when user clicks outside
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+          mobileMenu.classList.remove('open');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Generic dropdown toggle: works for desktop & mobile (anchors with .dropdown-toggle inside .menu)
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function (e) {
+        // Only intercept click on small screens or when user explicitly clicks (prevents breaking normal links)
+        e.preventDefault();
+        const parentLi = toggle.closest('li');
+        if (!parentLi) return;
+        parentLi.classList.toggle('open');
+        const expanded = parentLi.classList.contains('open');
+        toggle.setAttribute('aria-expanded', String(expanded));
+      });
+    });
+
+    // Mobile menu dropdowns
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(t => {
+      t.addEventListener('click', function (e) {
+        e.preventDefault();
+        const parent = t.parentElement;
+        parent.classList.toggle('open');
+      });
+    });
+
+    // Close any desktop dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      // keep dropdown open if click is inside a dropdown-toggle or dropdown
+      if (e.target.closest('.dropdown') || e.target.closest('.dropdown-toggle')) return;
+      document.querySelectorAll('.menu li.open').forEach(li => li.classList.remove('open'));
+      document.querySelectorAll('.menu .dropdown-toggle').forEach(a => a.setAttribute('aria-expanded', 'false'));
+    });
+
+    // Ensure menus reset on resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960) {
+        // ensure mobile menu hidden
+        if (mobileMenu) {
+          mobileMenu.classList.remove('open');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

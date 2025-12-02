@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ICMSET — International Advisory Board</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#05293a;
+      --gold:#fac13c;
+      --black:#0b0b0b;
+      --muted:#6b7280;
+      --surface:#f4f6f8;
+      --white:#ffffff;
+      --accent:#0c6ef6; /* blue accent used for ADVISORY BOARD */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      color:var(--black);
+      background:#fff;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* TOP LINE */
+    .topbar{height:6px;background:#3b2720}
+
+    /* HEADER */
+    header{
+      position:sticky;top:0;z-index:1000;background:var(--white);
+      box-shadow:0 1px 0 rgba(0,0,0,0.04);
+    }
+    .nav-wrap{
+      max-width:1200px;margin:0 auto;padding:12px 18px;
+      display:flex;align-items:center;gap:20px;justify-content:space-between;
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy)}
+    .badge{background:var(--navy);color:var(--white);padding:6px 10px;border-radius:6px;font-weight:700;font-size:13px}
+    .tag{font-weight:600;color:var(--muted);font-size:14px}
+
+    nav{display:flex;align-items:center;gap:12px}
+    .menu{display:flex;gap:6px;list-style:none;margin:0;padding:0;align-items:center}
+    .menu li{position:relative}
+    .menu a{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;text-decoration:none;
+      color:var(--muted);font-weight:600;font-size:14px;border-radius:6px;white-space:nowrap;
+    }
+    .menu a:hover,.menu .active> a{ color:var(--navy);background:rgba(5,41,58,0.04) }
+
+    /* Dropdown */
+    .dropdown{
+      position:absolute;top:calc(100% + 10px);left:0;min-width:220px;background:var(--white);
+      box-shadow:0 10px 24px rgba(2,6,23,0.12);border-radius:8px;padding:8px 0;display:none;
+    }
+    .menu li.open>.dropdown{display:block}
+    .dropdown .section-title{padding:8px 14px;font-weight:700;font-size:12px;color:var(--navy);text-transform:uppercase}
+    .dropdown a{display:block;padding:8px 14px;color:#333;font-size:13px}
+    .dropdown a:hover{background:var(--surface)}
+
+    .mobile-toggle{display:none;background:transparent;border:0;padding:6px;cursor:pointer}
+    .mobile-toggle svg{width:22px;height:22px;color:var(--navy)}
+
+    /* ANNOUNCEMENT */
+    .announcement{
+      background:#f6f7f8;border-top:1px solid rgba(2,6,23,0.02);border-bottom:1px solid rgba(2,6,23,0.02);
+      padding:28px 22px;text-align:center;position:relative;overflow:visible;
+    }
+    .announcement .text{max-width:1100px;margin:0 auto;color:#333;font-size:15px;line-height:1.5}
+    .announcement .highlight{display:block;margin-top:14px;font-weight:800;color:#d42020;font-size:20px;letter-spacing:0.6px}
+
+    /* decorative left bubbles */
+    .decor-left{position:absolute;left:0;top:40%;transform:translateY(-50%);pointer-events:none}
+    .bubble{width:110px;height:110px;border-radius:50%;position:relative;margin-bottom:10px;filter:blur(1px)}
+    .bubble.purple{background:linear-gradient(45deg, rgba(155,81,224,0.18), rgba(234,88,153,0.16));width:140px;height:140px;margin-left:30px;opacity:0.95}
+    .bubble.blue{background:linear-gradient(45deg, rgba(60,130,240,0.14), rgba(34,197,94,0.06));width:90px;height:90px;margin-left:-10px;opacity:0.9}
+
+    /* MAIN CONTENT */
+    main{padding:40px 22px 120px;max-width:1200px;margin:0 auto;position:relative}
+    .title-row{ text-align:center; margin-bottom:18px; }
+    .title-row h1{ font-size:36px; font-weight:800; margin:0; color:var(--navy); }
+    .title-row h1 .blue{ color:var(--accent); margin-left:8px }
+
+    /* Advisory layout */
+    .advisory-wrap{ display:flex; gap:48px; align-items:flex-start; }
+    .advisory-left{ width:520px; max-width:100%; }
+    .advisory-list{ list-style:none; padding:0; margin:0; color:#333; font-size:14px; line-height:1.8; font-weight:600; }
+    .advisory-list li{ margin-bottom:6px; }
+    .advisory-list li .affil{ font-weight:400; color:var(--muted); margin-left:6px; }
+
+    /* keep large whitespace on right like screenshot */
+    .advisory-right{ flex:1; }
+
+    @media (max-width:980px){
+      .advisory-wrap{ flex-direction:column; gap:18px; }
+      .advisory-left{ width:100%; }
+      main{padding:24px}
+      .title-row h1{font-size:28px}
+    }
+
+    /* small footer */
+    footer{border-top:1px solid rgba(2,6,23,0.04);padding:28px 22px;color:var(--muted);font-size:14px;background:#fff}
+  </style>
+</head>
+<body>
+
+  <div class="topbar" aria-hidden="true"></div>
+
+  <header>
+    <div class="nav-wrap" role="banner">
+      <a class="brand" href="index.html">
+        <span class="badge">ICMSET</span>
+        <span class="tag">Conference 2026</span>
+      </a>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </button>
+
+        <!-- Desktop menu (hidden on small screens) -->
+        <nav aria-label="Main navigation">
+          <ul class="menu" id="mainMenu" role="menubar" aria-hidden="false">
+            <li><a href="index.html">Home</a></li>
+
+            <li>
+              <a href="#TRACKS" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Call For Papers ▾</a>
+              <div class="dropdown" role="menu" aria-label="Call for papers submenu">
+                <a href="paper.html">Paper</a>
+                <a href="poster-project.html">Poster / Project Demo</a>
+                <a href="proposal.html">Speakers</a>
+              </div>
+            </li>
+
+            <li><a href="paper-submission.html" class="active">Paper Submission</a></li>
+            <li><a href="important date.html">Important Dates</a></li>
+
+            <li>
+              <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Authors ▾</a>
+              <div class="dropdown" role="menu" aria-label="Call for papers submenu">
+                <a href="registation.html">Registration</a>
+                <a href="visa.html">VISA</a>
+              </div>
+            </li>
+
+            <li class="has-dropdown" id="committeesItem">
+              <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Committees ▾</a>
+              <div class="dropdown" role="menu" aria-label="Committees submenu">
+                <div class="section-title">Patrons</div>
+                <a href="partons.html">Patron 1</a>
+                <a href="convener.html">Convener</a>
+         `       <a href="#">Speakers</a>
+
+                <div class="section-title" style="margin-top:8px">Advisory Board</div>
+                <a href="internal.html">Internal</a>
+                <a href="international.html">International</a>
+                <a href="national.html">National</a>
+                <a href="contact.html">Others</a>
+
+                <div class="section-title" style="margin-top:8px">Reviewer Board</div>
+                <a href="reviewer.html">Reviewer 1</a>
+              </div>
+            </li>
+
+            <li><a href="publication.html">Publication</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="reviewer.html">Reviewer</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Announcement / Intro (kept for site feel) -->
+  <section class="announcement" aria-label="Announcement">
+    <div class="text">
+      <strong style="color:var(--navy);">ICMSET-2K26</strong> focuses on recent advances in engineering and technology. See committee information below.
+    </div>
+  </section>
+
+  <main role="main">
+    <div class="title-row" aria-hidden="false">
+      <h1>INTERNATIONAL <span class="blue">ADVISORY BOARD</span></h1>
+    </div>
+
+    <div class="advisory-wrap" aria-label="International Advisory Board">
+      <div class="advisory-left">
+        <ul class="advisory-list">
+          <li>Dr. RODRIGO WEBER DOS SANTOS, Universidade Federal de Juiz de Fora, Brazil</li>
+          <li>Dr. VENKATESH CHENNAM VIJAY, Birmingham City University, UK</li>
+          <li>Dr. VINCENZO PIURI, University of Milan, Italy</li>
+          <li>Dr. K.C. SANTOSH, University of South Dakota, USA</li>
+          <li>Dr. RAJKUMAR BUYYA, University of Melbourne, Victoria</li>
+          <li>Dr. PRASANTA K. GHOSH, Syracuse University, Syracuse</li>
+          <li>Dr. JAMES GELLER, New Jersey Institute of Technology, USA</li>
+          <li>Dr. CLAIRE MONTELEONI, George Washington University, USA</li>
+          <li>Dr. BRIAN BOROWSKI, Stevens Institute of Technology, USA</li>
+          <li>Dr. THOMAS AUGUSTINE, University of Colorado Denver, USA</li>
+          <li>Dr. ELLEN GETHNER, University of Colorado Denver, USA</li>
+          <li>Dr. DIAB, MONA, George Washington University, USA</li>
+          <li>Dr. STEFANO BASAGNI, Northeastern University, USA</li>
+          <li>Dr. YASIR IBRAHIM, F.Engg, Jerash University, Jordan</li>
+          <li>Dr. YOUNG-BAE KO, Ajou University, South Korea</li>
+          <li>Dr. RIICHIRO MIZOGUCHI, Osaka University, Japan</li>
+          <li>Prof. SATTAR J. ALOUD, University of Bedfordshire, UK</li>
+          <li>Prof./Ir. Dr. Ab. HALIM BIN ABU BAKAR, University of Malaya, Malaysia</li>
+          <li>Dr. AKHTAR KALAM, Victoria University, Australia</li>
+          <li>Prof. Dr. SAAD MEKHILEF, University of Malaya, Malaysia</li>
+          <li>Dr. VARATHARAJU M. V, Ibra College of Technology, Oman</li>
+          <li>Dr. B. RAMPRIYA, Debre Markos University, Debre, Ethiopia</li>
+          <li>Dr. AHMED FAHEEM ZOBAA, Brunel University London, Uxbridge, UK</li>
+          <li>Dr. EASWARAMOORTHY RANGASWAMY, Amity University, Singapore</li>
+          <li>Dr. ANBALAGAN KRISHNAN, Xiamen University, Malaysia</li>
+          <li>Dr. SHANMUGAM JOGHEE, Skyline University College, Sharjah, UAE</li>
+          <li>Dr. J. PAULO DAVIM, University of Aveiro, Campus Santiago, Portugal</li>
+          <li>Dr. TALAL YUSAF, University of Southern Queensland, Australia</li>
+          <li>Dr. FEHIM FINDIK, Sakarya University, Turkey</li>
+          <!-- add more names below if needed, same format -->
+        </ul>
+      </div>
+
+      <!-- right column intentionally left blank to mimic your screenshot spacing -->
+      <div class="advisory-right" aria-hidden="true"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:6px 22px;">
+      <div><strong style="color:var(--navy)">ICMSET 2026</strong> — Panimalar Engineering College</div>
+      <div style="color:var(--muted);font-size:13px;">© 2026 All rights reserved</div>
+    </div>
+  </footer>
+
+  <script>
+    // MENU / DROPDOWN BEHAVIOR (keeps the original behavior)
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        const parentLi = toggle.closest('li');
+        if (!parentLi) return;
+        parentLi.classList.toggle('open');
+        const expanded = parentLi.classList.contains('open');
+        toggle.setAttribute('aria-expanded', String(expanded));
+      });
+    });
+
+    // close desktop dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.dropdown') || e.target.closest('.dropdown-toggle')) return;
+      document.querySelectorAll('.menu li.open').forEach(li => li.classList.remove('open'));
+    });
+  </script>
+</body>
+</html>

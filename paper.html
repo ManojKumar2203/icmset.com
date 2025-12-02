@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ICMSET — Tracks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#05293a;
+      --gold:#fac13c;
+      --black:#0b0b0b;
+      --muted:#6b7280;
+      --surface:#f4f6f8;
+      --white:#ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      color:var(--black);
+      background:#fff;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* TOP LINE */
+    .topbar{height:6px;background:#3b2720}
+
+    /* HEADER */
+    header{
+      position:sticky;top:0;z-index:1000;background:var(--white);
+      box-shadow:0 1px 0 rgba(0,0,0,0.04);
+    }
+    .nav-wrap{
+      max-width:1200px;margin:0 auto;padding:12px 18px;
+      display:flex;align-items:center;gap:20px;justify-content:space-between;
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy)}
+    .badge{background:var(--navy);color:var(--white);padding:6px 10px;border-radius:6px;font-weight:700;font-size:13px}
+    .tag{font-weight:600;color:var(--muted);font-size:14px}
+
+    nav{display:flex;align-items:center;gap:12px}
+    .menu{display:flex;gap:6px;list-style:none;margin:0;padding:0;align-items:center}
+    .menu li{position:relative}
+    .menu a{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;text-decoration:none;
+      color:var(--muted);font-weight:600;font-size:14px;border-radius:6px;white-space:nowrap;
+    }
+    .menu a:hover,.menu .active> a{ color:var(--navy);background:rgba(5,41,58,0.04) }
+
+    /* Dropdown */
+    .dropdown{
+      position:absolute;top:calc(100% + 10px);left:0;min-width:220px;background:var(--white);
+      box-shadow:0 10px 24px rgba(2,6,23,0.12);border-radius:8px;padding:8px 0;display:none;
+    }
+    .menu li.open>.dropdown{display:block}
+    .dropdown .section-title{padding:8px 14px;font-weight:700;font-size:12px;color:var(--navy);text-transform:uppercase}
+    .dropdown a{display:block;padding:8px 14px;color:#333;font-size:13px}
+    .dropdown a:hover{background:var(--surface)}
+
+    .mobile-toggle{display:none;background:transparent;border:0;padding:6px;cursor:pointer}
+    .mobile-toggle svg{width:22px;height:22px;color:var(--navy)}
+
+    /* ANNOUNCEMENT */
+    .announcement{
+      background:#f6f7f8;border-top:1px solid rgba(2,6,23,0.02);border-bottom:1px solid rgba(2,6,23,0.02);
+      padding:28px 22px;text-align:center;position:relative;overflow:visible;
+    }
+    .announcement .text{max-width:1100px;margin:0 auto;color:#333;font-size:15px;line-height:1.5}
+    .announcement .highlight{display:block;margin-top:14px;font-weight:800;color:#d42020;font-size:20px;letter-spacing:0.6px}
+
+    /* decorative left bubbles */
+    .decor-left{position:absolute;left:0;top:40%;transform:translateY(-50%);pointer-events:none}
+    .bubble{width:110px;height:110px;border-radius:50%;position:relative;margin-bottom:10px;filter:blur(1px)}
+    .bubble.purple{background:linear-gradient(45deg, rgba(155,81,224,0.18), rgba(234,88,153,0.16));width:140px;height:140px;margin-left:30px;opacity:0.95}
+    .bubble.blue{background:linear-gradient(45deg, rgba(60,130,240,0.14), rgba(34,197,94,0.06));width:90px;height:90px;margin-left:-10px;opacity:0.9}
+
+    /* MAIN CONTENT */
+    main{padding:56px 22px 120px;max-width:1200px;margin:0 auto;position:relative}
+    .section-title{text-align:center;color:#0c6ef6;font-size:36px;font-weight:700;margin:10px 0 38px;letter-spacing:1px}
+
+    /* TRACKS GRID */
+    .tracks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:36px;align-items:start}
+    .track{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 8px 28px rgba(2,6,23,0.06);position:relative;min-height:340px;transition:transform .32s ease, box-shadow .32s ease}
+    .track:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(2,6,23,0.12)}
+
+    .track .img{width:100%;height:100%;min-height:340px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;position:relative;transition:transform .6s cubic-bezier(.2,.9,.3,1)}
+    /* zoom image slightly on hover */
+    .track:hover .img{transform:scale(1.04)}
+
+    /* overlay: subtle gradient + title reveal */
+    .track .overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.38) 100%);opacity:1;transition:background .3s ease}
+    .track .title{font-size:54px;font-weight:700;color:rgba(255,255,255,0.98);text-shadow:0 6px 18px rgba(0,0,0,0.45);letter-spacing:1.4px;transform:translateY(0);transition:transform .36s cubic-bezier(.2,.9,.3,1), opacity .36s}
+
+    /* On hover: make text pop slightly */
+    .track:hover .title{transform:translateY(-6px);opacity:1}
+
+    /* bottom decorative strip */
+    .track::after{content:"";position:absolute;bottom:-18px;left:20px;right:20px;height:12px;background:linear-gradient(90deg,#fff,#fff);border-radius:6px;box-shadow:0 10px 22px rgba(2,6,23,0.04);z-index:2}
+
+    /* small meta badge (optional) */
+    .track .badge{
+      position:absolute;top:16px;left:16px;background:rgba(0,0,0,0.62);color:#fff;padding:6px 10px;border-radius:6px;font-weight:700;font-size:13px;z-index:3;
+    }
+
+    /* HOVER: show a subtle gold outline on focus/hover (accessibility) */
+    .track:focus-within, .track:hover{outline:0}
+    .track:focus-within{box-shadow:0 14px 42px rgba(250,193,60,0.12)}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .tracks-grid{grid-template-columns:1fr;gap:24px}
+      .track .img{height:300px;min-height:0}
+      .track .title{font-size:40px}
+      .decor-left{display:none}
+    }
+
+    /* mobile header behavior */
+    @media (max-width:920px){
+      .mobile-toggle{display:inline-flex}
+      .menu{
+        position:fixed;top:62px;right:0;width:320px;height:calc(100% - 62px);
+        background:var(--white);flex-direction:column;padding:18px;gap:8px;
+        transform:translateX(110%);transition:transform .26s ease;box-shadow:-8px 20px 40px rgba(2,6,23,0.12);
+      }
+      .menu.open{transform:translateX(0%)}
+      .menu li{width:100%}
+      .menu a{width:100%;padding:12px 14px;border-radius:8px}
+      .menu li .dropdown{position:relative;top:0;left:0;width:100%;box-shadow:none;padding:0;display:none}
+      .menu li.open>.dropdown{display:block}
+    }
+
+    /* small footer */
+    footer{border-top:1px solid rgba(2,6,23,0.04);padding:28px 22px;color:var(--muted);font-size:14px;background:#fff}
+  </style>
+</head>
+<body>
+
+  <div class="topbar" aria-hidden="true"></div>
+
+  <header>
+    <div class="nav-wrap" role="banner">
+      <a class="brand" href="index.html">
+        <span class="badge">ICMSET</span>
+        <span class="tag">Conference 2026</span>
+      </a>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </button>
+
+        <!-- Desktop menu (hidden on small screens) -->
+        <nav aria-label="Main navigation">
+          <ul class="menu" id="mainMenu" role="menubar" aria-hidden="false">
+            <li><a href="index.html">Home</a></li>
+
+            <li>
+              <a href="#TRACKS" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Call For Papers ▾</a>
+              <div class="dropdown" role="menu" aria-label="Call for papers submenu">
+                <a href="paper.html">Paper</a>
+                <a href="poster-project.html">Poster / Project Demo</a>
+                <a href="proposal.html">Speakers</a>
+              </div>
+            </li>
+
+            <li><a href="paper-submission.html" class="active">Paper Submission</a></li>
+            <li><a href="important date.html">Important Dates</a></li>
+
+            <li>
+              <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Authors ▾</a>
+              <div class="dropdown" role="menu" aria-label="Call for papers submenu">
+                <a href="registation.html">Registration</a>
+                <a href="visa.html">VISA</a>
+              </div>
+            </li>
+
+            <li class="has-dropdown" id="committeesItem">
+              <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Committees ▾</a>
+              <div class="dropdown" role="menu" aria-label="Committees submenu">
+                <div class="section-title">Patrons</div>
+                <a href="partons.html">Patron 1</a>
+                <a href="convener.html">Convener</a>
+         `       <a href="#">Speakers</a>
+
+                <div class="section-title" style="margin-top:8px">Advisory Board</div>
+                <a href="internal.html">Internal</a>
+                <a href="international.html">International</a>
+                <a href="national.html">National</a>
+                <a href="contact.html">Others</a>
+
+                <div class="section-title" style="margin-top:8px">Reviewer Board</div>
+                <a href="reviewer.html">Reviewer 1</a>
+              </div>
+            </li>
+
+            <li><a href="publication.html">Publication</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="reviewer.html">Reviewer</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Announcement / Intro -->
+  <section class="announcement" aria-label="Announcement">
+    <div class="decor-left" aria-hidden="true">
+      <div class="bubble purple" style="opacity:0.55"></div>
+      <div class="bubble" style="background: linear-gradient(45deg, rgba(234,88,153,0.12), rgba(60,130,240,0.08));"></div>
+      <div class="bubble blue" style="opacity:0.9"></div>
+    </div>
+
+    <div class="text">
+      <strong style="color:var(--navy);">ICMSET-2K26</strong> focuses on the latest and upcoming developments in Information Technology, Machine Learning and AI. This conference covers topics like Computation, Security, Artificial Intelligence and Expert Systems, helping engineering professionals keep up with current trends.
+      <span class="highlight">"BEST PAPER AWARD WILL BE GIVEN WITH A MOMENTUOUS CERTIFICATE FOR EACH SESSION"</span>
+    </div>
+  </section>
+
+  <!-- TRACKS SECTION (4 tracks, hover animation included) -->
+  <main class="tracks-section" aria-label="Tracks">
+    <h2 class="section-title">TRACKS</h2>
+
+    <div class="tracks-grid" role="list">
+
+      <!-- Track 1 -->
+      <article class="track" role="listitem" aria-label="Track 1" tabindex="0">
+        <div class="badge">Track A</div>
+        <div class="img" style="background-image: url('https://images.unsplash.com/photo-1526378728461-4b8d4bba1f9a?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=2db7c8a6f3da6ed1f3f2f6b3b9f4d8f3');">
+          <div class="overlay"><div class="title">Track 1</div></div>
+        </div>
+        <p><strong>Track 1:</strong> Sustainable materials, green manufacturing and advanced design concepts</p>
+      </article>
+
+      <!-- Track 2 -->
+      <article class="track" role="listitem" aria-label="Track 2" tabindex="0">
+        <div class="badge">Track B</div>
+        <div class="img" style="background-image: url('https://images.unsplash.com/photo-1526378728461-2a1f4d6b9e7f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=8a7b3e7b4f2f6f2e3a5ecb7d9bd2c6f1');">
+          <div class="overlay"><div class="title">Track 2</div></div>
+        </div>
+        <p><strong>Track 2:</strong> Renewable energy systems, energy storage and environmental technologies</p>
+      </article>
+
+      <!-- Track 3 -->
+      <article class="track" role="listitem" aria-label="Track 3" tabindex="0">
+        <div class="badge">Track C</div>
+        <div class="img" style="background-image: url('https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=3a5b6c7d8e9f0f1a2b3c4d5e6f7g8h9i');">
+          <div class="overlay"><div class="title">Track 3</div></div>
+        </div>
+        <p><strong>Track 3:</strong> Automotive, aerospace, mobility engineering and intelligent systems</p>
+      </article>
+
+      <!-- Track 4 -->
+      <article class="track" role="listitem" aria-label="Track 4" tabindex="0">
+        <div class="badge">Track D</div>
+        <div class="img" style="background-image: url('https://images.unsplash.com/photo-1508873699372-7ae0f75a1bdf?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e');">
+          <div class="overlay"><div class="title">Track 4</div></div>
+        </div>
+        <p><strong>Track 4:</strong> Robotics, AI, digital engineering and Industry 4.0 applications</p>
+      </article>
+
+    </div>
+  </main>
+
+  <footer>
+    <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:6px 22px;">
+      <div><strong style="color:var(--navy)">ICMSET 2026</strong> — Panimalar Engineering College</div>
+      <div style="color:var(--muted);font-size:13px;">© 2026 All rights reserved</div>
+    </div>
+  </footer>
+
+  <script>
+    // MOBILE MENU
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (mobileToggle && mobileMenu) {
+      mobileToggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+        mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      // close mobile menu when user clicks outside
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+          mobileMenu.classList.remove('open');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Generic dropdown toggle: works for desktop & mobile (anchors with .dropdown-toggle inside .menu)
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function (e) {
+        // Only intercept click on small screens or when user explicitly clicks (prevents breaking normal links)
+        e.preventDefault();
+        const parentLi = toggle.closest('li');
+        if (!parentLi) return;
+        parentLi.classList.toggle('open');
+        const expanded = parentLi.classList.contains('open');
+        toggle.setAttribute('aria-expanded', String(expanded));
+      });
+    });
+
+    // Mobile menu dropdowns
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(t => {
+      t.addEventListener('click', function (e) {
+        e.preventDefault();
+        const parent = t.parentElement;
+        parent.classList.toggle('open');
+      });
+    });
+
+    // Close any desktop dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      // keep dropdown open if click is inside a dropdown-toggle or dropdown
+      if (e.target.closest('.dropdown') || e.target.closest('.dropdown-toggle')) return;
+      document.querySelectorAll('.menu li.open').forEach(li => li.classList.remove('open'));
+      document.querySelectorAll('.menu .dropdown-toggle').forEach(a => a.setAttribute('aria-expanded', 'false'));
+    });
+
+    // Ensure menus reset on resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960) {
+        // ensure mobile menu hidden
+        if (mobileMenu) {
+          mobileMenu.classList.remove('open');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

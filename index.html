@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Panimalar Engineering College — Conference & Event</title>
+  <meta name="description" content="Panimalar Engineering College Conference — timeline, patrons, registration" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="logo">
+      <a href="https://www.panimalar.ac.in/"><img src="image/pec-logo.png" alt="Panimalar logo"></a>
+    </div>
+
+    <nav aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#contact">Contact</a>
+      <a class="apply-btn btn alt" href="paper.html">Register</a>
+    </nav>
+
+    <!-- mobile toggle -->
+    <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" id="menuToggle" title="Open menu">☰</button>
+  </div>
+
+  <!-- simple mobile nav overlay (hidden by default) -->
+  <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#timeline" onclick="closeMenu()">Timeline</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a class="apply btn alt apply" href="paper.html" onclick="closeMenu()">Register</a>
+  </div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero" aria-label="Hero" style="background-image: url('image/bg 1.jpg');">
+    <div class="container">
+        <div>
+            <h1>International Conference on</h1>
+            <h1>Modern Sustainable Engineering and Technology</h1> 
+            <h1>ICMSET 2K26</h1>
+            <p class="date" style="font-size:35px;color:rgba(255,255,255,0.9);font-weight:700">12 & 13 June 2026 </p>
+
+            <p style="font-size:25px;color:rgba(255,255,255,0.9);font-weight:500;margin:8px 0">ORGANIZED BY </p>  
+            <p style="font-size:25px;color:rgba(255,255,255,0.9);font-weight:500;margin:8px 0">DEPARTMENT OF MECHANICAL ENGINEERING</p>
+            <p>“Unleashing the Potential of Sustainable Engineering — Challenges and Opportunities”</p>
+            <div class="cta-bar" role="region" aria-label="Hero actions">
+
+                <div style="width:100%;display:flex;justify-content:center">
+                        <a href="paper.html" class="btn" style="background:var(--gold);color:var(--navy);font-weight:900;padding:12px 18px;border-radius:10px;display:inline-block;text-decoration:none">
+                          Apply Now
+                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br><br><br><br>
+ <!-- countdown -->
+<section aria-label="Countdown">
+  <div class="countdown-outer">
+      <div class="countdown-wrap" aria-live="polite">
+        <div class="count-card"><div class="num" id="days">--</div><div class="lbl">Days</div></div>
+        <div class="count-card"><div class="num" id="hours">--</div><div class="lbl">Hours</div></div>
+        <div class="count-card"><div class="num" id="mins">--</div><div class="lbl">Minutes</div></div>
+        <div class="count-card"><div class="num" id="secs">--</div><div class="lbl">Seconds</div></div>
+      </div>
+  </div>
+</section>
+
+
+<main class="container">
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">About The Conference</h2>
+    <div class="about-wrap fade-up">
+      <div class="about-card card">
+        <!-- FONT SIZE & COLOR for this 'about-card' container specified above: font-size:15px; color:var(--black) -->
+        <p style="margin:0 0 10px;font-weight:800;color:var(--navy)">Overview</p>
+        <p style="margin:0 0 12px;color:var(--muted);font-size:15px"> </p>
+              <p>  Modern engineering practices are rapidly evolving toward sustainability due to growing global environmental 
+                challenges and technological advancements. ICMSET 2K26 aims to bring together researchers, academicians, industry 
+                experts, and technologists across disciplines to discuss innovations that support sustainable development.</p>
+            <p>The conference provides a platform for presenting cutting-edge research, exchanging scientific knowledge, and 
+                fostering collaborative research in emerging areas of engineering, sustainability, and technology.
+            </p>
+
+        <p style="font-weight:800;color:var(--black);margin-top:12px">Key Tracks</p>
+        <ul class="track-list">
+          <li>Sustainable materials, green manufacturing and advanced design concepts</li>
+          <li>Renewable energy systems, energy storage and environmental technologies</li>
+          <li>Automotive, aerospace, mobility engineering and intelligent systems</li>
+          <li>Robotics, AI, digital engineering and Industry 4.0 applications</li>
+        </ul>
+      </div>
+
+      <aside class="about-side">
+        <!-- NAVY container: font-size:15px; color:white specified above -->
+        <h3 style="margin:0 0 8px;font-size:18px;color:var(--gold)">Quick Facts</h3>
+        <p style="margin:8px 0 0;font-size:15px;color:rgba(255,255,255,0.95)"><strong>Dates:</strong> 12 & 13 June 2026</p>
+        <p style="margin:6px 0 0;color:rgba(255,255,255,0.95);font-size:15px"><strong>Venue:</strong> Panimalar Engineering College </p>
+        <p style="margin:6px 0 0;color:rgba(255,255,255,0.95);font-size:15px"><strong>Contact:</strong>ICMSET@gmail.com</p>
+        <div style="margin-top:12px">
+          <button class="btn" type="button" style="background:var(--gold);color:var(--navy);font-weight:900;padding:10px 12px;border-radius:8px">Download Brochure</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- TIMELINE (animated + auto-stage) -->
+<section id="timeline" style="padding:60px 0">
+  <h2 class="section-title">IMPORTANT DATES – TIMELINE</h2>
+
+  <div class="tl-container">
+
+      <!-- 1 -->
+      <div class="tl-item">
+        <div class="tl-icon">📄</div>
+        <h3>Call for Papers</h3>
+        <p>September 5, 2026</p>
+      </div>
+
+      <div class="tl-line"></div>
+
+      <!-- 2 -->
+      <div class="tl-item">
+        <div class="tl-icon">✔</div>
+        <h3>Acceptance Notification</h3>
+        <p>Within 20 days from Submission</p>
+      </div>
+
+      <div class="tl-line"></div>
+
+      <!-- 3 -->
+      <div class="tl-item">
+        <div class="tl-icon">📝</div>
+        <h3>Last Date of Registration</h3>
+        <p>Within 10 days from Acceptance</p>
+      </div>
+
+      <div class="tl-line"></div>
+
+      <!-- 4 -->
+      <div class="tl-item">
+        <div class="tl-icon">📘</div>
+        <h3>Paper Submission</h3>
+        <p>January 30, 2026</p>
+      </div>
+
+      <div class="tl-line"></div>
+
+      <!-- 5 -->
+      <div class="tl-item">
+        <div class="tl-icon">🖨</div>
+        <h3>Camera-Ready Paper</h3>
+        <p>Within 10 days from Acceptance</p>
+      </div>
+
+      <div class="tl-line"></div>
+
+      <!-- 6 -->
+      <div class="tl-item">
+        <div class="tl-icon">🎤</div>
+        <h3>Conference Date</h3>
+        <p>March 27–28, 2026</p>
+      </div>
+
+  </div>
+</section>
+
+
+  <!-- =========================
+     ABOUT US – Panimalar Engineering College
+     ========================= -->
+<section id="about-us" style="padding:60px 0">
+  <h2 class="section-title">ABOUT US</h2>
+
+  <div class="about-wrap" style="margin-top:20px">
+
+    <!-- LEFT IMAGE -->
+    <div class="about-card" style="text-align:center">
+      <img src="image/gate1.png" alt="Panimalar Entrance Gate"
+           style="width:100%;margin:auto;border-radius:12px">
+    </div>
+
+    <!-- RIGHT TEXT -->
+    <div class="about-card">
+      <p style="font-size:15px;line-height:1.6;color:var(--black)">
+        <strong>Panimalar Engineering College</strong>, a Christian Minority Institution under
+        JaiSakthi Educational Trust, is affiliated with Anna University, Chennai and approved by
+        UGC for 12(B) and 2(f) status for research activities. Situated on a serene 52.87-acre
+        campus at Poonamallee, Chennai, the college is known for academic excellence, discipline,
+        cutting-edge infrastructure, and strong value-based education.
+      </p>
+
+      <p style="font-size:15px;line-height:1.6;color:var(--black)">
+        The institution offers seven UG and three PG programmes in Engineering and Management.
+        Accredited by NBA, the college fosters a rich learning atmosphere supported by experienced,
+        research-oriented faculty members and advanced laboratories. The campus maintains strong
+        associations with professional bodies like IEEE, ISTE, IETE, CSI, SAE INDIA and many more.
+      </p>
+    </div>
+
+  </div>
+<br><br>
+  <div>
+      <h2 class="section-title">DEPARTMENT</h2>
+
+    <div class="about-wrap" style="margin-top:20px;display:flex;gap:20px;align-items:center">
+        <!-- LEFT TEXT -->
+      <div class="about-card">
+        <p style="font-size:15px;line-height:1.6;color:var(--black)">
+          <strong>Panimalar Engineering College</strong>, a Christian Minority Institution under
+          JaiSakthi Educational Trust, is affiliated with Anna University, Chennai and approved by
+          UGC for 12(B) and 2(f) status for research activities. Situated on a serene 52.87-acre
+          campus at Poonamallee, Chennai, the college is known for academic excellence, discipline,
+          cutting-edge infrastructure, and strong value-based education.
+        </p>
+
+        <p style="font-size:15px;line-height:1.6;color:var(--black)">
+          The institution offers seven UG and three PG programmes in Engineering and Management.
+          Accredited by NBA, the college fosters a rich learning atmosphere supported by experienced,
+          research-oriented faculty members and advanced laboratories. The campus maintains strong
+          associations with professional bodies like IEEE, ISTE, IETE, CSI, SAE INDIA and many more.
+        </p>
+      </div>
+
+        <!-- RIGHT IMAGE -->
+      <div class="about-card" style="text-align:center;flex-shrink:0">
+        <img src="image/gate1.png" alt="Panimalar Entrance Gate"
+            style="width:100%;border-radius:12px">
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+  <br><br>
+
+  <!-- OBJECTIVES -->
+  <h2 class="section-title">OBJECTIVES</h2>
+  <div class="about-card" style="margin-top:10px">
+    <ul style="font-size:15px;color:var(--black);line-height:1.7;list-style:none;padding:0">
+      <li>✔ To create a center of attraction for skilled professionals to interact and discuss
+          cutting-edge research and the latest developments in engineering and management.</li>
+      <li>✔ To provide a common platform for innovative researchers to share their experiences,
+          exchange ideas, and offer realistic solutions to real-world problems.</li>
+      <li>✔ To enrich knowledge in the advances of technology and management for academicians and
+          technocrats.</li>
+      <li>✔ To provide opportunities for researchers to evolve as entrepreneurs through meaningful
+          interactions with experts from leading industries.</li>
+    </ul>
+  </div>
+
+  <br><br>
+
+
+</section>
+
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-grid fade-up">
+      <div class="contact-card">
+        <h3 style="margin-top:0;color:var(--navy)">Directorate of Online Education</h3>
+        <p style="margin:6px 0;color:var(--muted)">Panimalar Engineering College<br>Room No: Conference Office, Panimalar Campus, Chennai — PIN</p>
+
+        <p style="margin:12px 0 4px;font-weight:800;color:var(--black)">Conference Convenors</p>
+        <p style="margin:0;color:var(--muted)">Dr. hod — +91-XXXXXXX<br>Dr. sir — +91-XXXXXXX<br>Email: conference@panimalar.edu.in</p>
+
+        <div style="margin-top:12px">
+          <img src="images/qr-code.png" alt="QR" style="width:150px;border-radius:8px"> <!-- replace with actual QR image -->
+        </div>
+      </div>
+
+      <form class="contact-card contact-form" onsubmit="event.preventDefault();alert('Demo: form submission captured. Integrate server to submit.')">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="affiliation" placeholder="Affiliation / Institution">
+        <textarea name="message" rows="6" placeholder="Message / Abstract title (optional)"></textarea>
+        <div style="display:flex;gap:10px;align-items:center;justify-content:flex-end">
+          <button class="btn" type="submit" style="background:var(--navy);color:var(--white);padding:10px 14px;border-radius:10px">Submit</button>
+          <button class="btn ghost" type="reset" style="border-radius:10px">Clear</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © Panimalar Engineering College — Directorate of Online Education
+  </footer>
+</main>
+
+<!-- =========================
+     SCRIPTS: Countdown + intersection observer + enhanced timeline
+     ========================= -->
+<script>
+  // COUNTDOWN: set conference start date (local) -> Jan 12, 2026 09:00 local time
+  const target = new Date(2026,5,12,9,0,0);
+  function updateCountdown(){
+    const now = new Date();
+    let diff = target - now;
+    if(diff < 0){
+      document.getElementById('days').textContent='00';
+      document.getElementById('hours').textContent='00';
+      document.getElementById('mins').textContent='00';
+      document.getElementById('secs').textContent='00';
+      return;
+    }
+    const days = Math.floor(diff/(1000*60*60*24));
+    diff -= days*(1000*60*60*24);
+    const hours = Math.floor(diff/(1000*60*60));
+    diff -= hours*(1000*60*60);
+    const mins = Math.floor(diff/(1000*60));
+    diff -= mins*(1000*60);
+    const secs = Math.floor(diff/1000);
+    document.getElementById('days').textContent = String(days).padStart(2,'0');
+    document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('mins').textContent = String(mins).padStart(2,'0');
+    document.getElementById('secs').textContent = String(secs).padStart(2,'0');
+  }
+  updateCountdown(); setInterval(updateCountdown,1000);
+
+  // Simple IntersectionObserver to add 'in-view' to animated elements
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in-view'); observer.unobserve(e.target); }
+    });
+  },{threshold:0.12});
+  document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+  // Interactive timeline script (improved)
+  (function(){
+    const steps = Array.from(document.querySelectorAll('.step'));
+    const progressFill = document.querySelector('.stepper-progress-fill');
+
+    function setActive(index, skipScroll) {
+      steps.forEach((s,i)=>{
+        const isActive = (i === index);
+        s.classList.toggle('active', isActive);
+        s.setAttribute('aria-current', isActive ? 'true' : 'false');
+        const btn = s.querySelector('.step-btn');
+        const details = s.querySelector('.step-details');
+        if(btn){
+          btn.setAttribute('aria-expanded', String(isActive));
+        }
+        if(details){
+          details.setAttribute('aria-hidden', String(!isActive));
+        }
+      });
+      // progress
+      const total = steps.length;
+      const pct = (index) / (total - 1) * 100;
+      if(progressFill) progressFill.style.width = pct + '%';
+
+      if(!skipScroll){
+        const active = steps[index];
+        if(active) active.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+      }
+    }
+
+    // compute stage based on dates
+    // NOTE: dates are local time; adjust if you want UTC
+    const dateStages = [
+      new Date(2025,11,1),   // Dec 1 2025 -> stage 0 (Registration Open)
+      new Date(2026,0,15),   // Jan 15 2026 -> stage 1 (Registration Close / final)
+      new Date(2026,0,16),   // Jan 16 2026 -> stage 2 (Screening)
+      new Date(2026,0,24),   // Jan 24 2026 -> stage 3 (Screening Results)
+      new Date(2026,0,29),   // Jan 29 2026 -> stage 4 (Conference starts)
+      new Date(2026,0,31)    // Jan 31 2026 -> stage 5 (Final Results)
+    ];
+    function computeStageFromNow(){
+      const now = new Date();
+      for(let i=dateStages.length-1;i>=0;i--){
+        if(now >= dateStages[i]) return i;
+      }
+      return 0;
+    }
+
+    // initialize
+    const initial = computeStageFromNow();
+    setActive(initial, true);
+
+    // click / keyboard handlers
+    steps.forEach((step, idx)=>{
+      const btn = step.querySelector('.step-btn');
+      btn.addEventListener('click', ()=> setActive(idx));
+      // keyboard navigation
+      step.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); setActive(idx); }
+        if(e.key === 'ArrowRight'){ e.preventDefault(); setActive(Math.min(steps.length-1, idx+1)); }
+        if(e.key === 'ArrowLeft'){ e.preventDefault(); setActive(Math.max(0, idx-1)); }
+        if(e.key === 'ArrowDown'){ e.preventDefault(); window.scrollBy({top:200,behavior:'smooth'}); }
+      });
+    });
+
+  })();
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  function closeMenu(){
+    mobileNav.style.display = 'none';
+    mobileNav.setAttribute('aria-hidden','true');
+    menuToggle.setAttribute('aria-expanded','false');
+  }
+
+  menuToggle.addEventListener('click', ()=>{
+    const open = menuToggle.getAttribute('aria-expanded') === 'true';
+    if(open){
+      closeMenu();
+    } else {
+      mobileNav.style.display = 'block';
+      mobileNav.setAttribute('aria-hidden','false');
+      menuToggle.setAttribute('aria-expanded','true');
+    }
+  });
+
+  // close mobile menu on link click (also handles anchor navigation)
+  document.querySelectorAll('#mobile-nav a').forEach(a=>{
+    a.addEventListener('click', closeMenu);
+  });
+</script>
+
+</body>
+</html>

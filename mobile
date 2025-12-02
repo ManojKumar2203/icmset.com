@@ -1,0 +1,224 @@
+     /* Footer */
+    footer{border-top:1px solid rgba(2,6,23,0.04);padding:28px 22px;color:var(--muted);font-size:14px;background:#fff}
+
+
+    /* Responsive */
+    @media (max-width:960px){
+      .grid{grid-template-columns:1fr; }
+      .req-wrap{margin-top:10px}
+      .centered img{max-width:150px}
+      .menu{display:none}        /* hide desktop menu on small screens; we'll use mobile toggle */
+      .mobile-toggle{display:inline-flex}
+    }
+    @media (max-width:480px){
+      .page{margin:18px auto;padding:0 14px}
+      .page-header h1{font-size:18px}
+      .section-title{font-size:20px}
+    }
+
+    /* Mobile slide-in menu (keeps same styles if you want later) */
+    .mobile-menu {
+      position:fixed;
+      top:62px;
+      right:0;
+      width:280px;
+      height:calc(100% - 62px);
+      background:var(--white);
+      box-shadow:-8px 20px 40px rgba(2,6,23,0.12);
+      transform:translateX(110%);
+      transition:transform .26s ease;
+      z-index:1200;
+      padding:18px;
+      overflow:auto;
+    }
+    .mobile-menu.open{ transform:translateX(0) }
+    .mobile-menu a{ display:block; padding:10px 12px; color:var(--muted); border-radius:6px; text-decoration:none; margin-bottom:6px; font-weight:600 }
+    .mobile-menu .dropdown { position:static; box-shadow:none; padding-left:8px; display:none }
+    .mobile-menu .open > .dropdown { display:block }
+  </style>
+</head>
+<body>
+
+  <div class="topbar" aria-hidden="true"></div>
+
+  <header>
+    <div class="nav-wrap" role="banner">
+      <a class="brand" href="index.html">
+        <span class="badge">ICMSET</span>
+        <span class="tag">Conference 2026</span>
+      </a>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </button>
+
+        <!-- Desktop menu (hidden on small screens) -->
+        <nav aria-label="Main navigation">
+          <ul class="menu" id="mainMenu" role="menubar" aria-hidden="false">
+            <li><a href="index.html">Home</a></li>
+
+            <li>
+              <a href="#TRACKS" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Call For Papers ▾</a>
+              <div class="dropdown" role="menu" aria-label="Call for papers submenu">
+                <a href="paper.html">Paper</a>
+                <a href="poster-project.html">Poster / Project Demo</a>
+                <a href="proposal.html">Speakers</a>
+              </div>
+            </li>
+
+            <li><a href="paper-submission.html" class="active">Paper Submission</a></li>
+            <li><a href="important date.html">Important Dates</a></li>
+
+            <li>
+              <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Authors ▾</a>
+              <div class="dropdown" role="menu" aria-label="Call for papers submenu">
+                <a href="registation.html">Registration</a>
+                <a href="visa.html">VISA</a>
+              </div>
+            </li>
+
+            <li class="has-dropdown" id="committeesItem">
+              <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Committees ▾</a>
+              <div class="dropdown" role="menu" aria-label="Committees submenu">
+                <div class="section-title">Patrons</div>
+                <a href="partons.html">Patron</a>
+                <a href="convener.html">Convener</a>
+                <a href="#">Speakers</a>
+
+                <div class="section-title" style="margin-top:8px">Advisory Board</div>
+                <a href="internal.html">Internal</a>
+                <a href="international.html">International</a>
+                <a href="national.html">National</a>
+                <a href="committees.html"> Committees</a>
+
+                <div class="section-title" style="margin-top:8px">Reviewer Board</div>
+                <a href="reviewer.html">Reviewer</a>
+              </div>
+            </li>
+
+            <li><a href="publication.html">Publication</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="reviewer.html">Reviewer</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- mobile menu (slides in) -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <a href="index.html">Home</a>
+
+    <div class="mobile-item">
+      <a href="paper.html" class="mobile-dropdown-toggle">Call For Papers ▾</a>
+      <div class="dropdown">
+        <a href="paper.html">Paper</a>
+        <a href="poster-project.html">Poster / Project Demo</a>
+        <a href="proposal.html">Speakers</a>
+      </div>
+    </div>
+
+    <a href="paper-submission.html" aria-current="page">Paper Submission</a>
+    <a href="important date.html">Important Dates</a>
+
+    <div class="mobile-item">
+      <a href="registation.html" class="mobile-dropdown-toggle">Authors ▾</a>
+      <div class="dropdown">
+        <a href="registation.html">Registration</a>
+        <a href="visa.html">VISA</a>
+      </div>
+    </div>
+
+    <div class="mobile-item">
+      <a href="#" class="mobile-dropdown-toggle">Committees ▾</a>
+      <div class="dropdown">
+        <div class="section-title">Patrons</div>
+        <a href="partons.html">Patron</a>
+        <a href="convener.html">Convener</a>
+        <a href="#">Speakers</a>
+
+        <div class="section-title">Patrons</div>
+        <a href="internal.html">Internal</a>
+        <a href="international.html">International</a>
+        <a href="national.html">National</a>
+        <a href="committees.html"> Committees</a>
+
+        <div class="section-title">Patrons</div>
+        <a href="reviewer.html">Reviewer</a>
+
+      </div>
+    </div>
+
+    <a href="publication.html">Publication</a>
+    <a href="contact.html">Contact</a>
+    <a href="reviewer.html">Reviewer</a>
+  </div>
+ 
+
+ <script>
+    // MOBILE MENU
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (mobileToggle && mobileMenu) {
+      mobileToggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+        mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      // close mobile menu when user clicks outside
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+          mobileMenu.classList.remove('open');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Generic dropdown toggle: works for desktop & mobile (anchors with .dropdown-toggle inside .menu)
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function (e) {
+        // Only intercept click on small screens or when user explicitly clicks (prevents breaking normal links)
+        e.preventDefault();
+        const parentLi = toggle.closest('li');
+        if (!parentLi) return;
+        parentLi.classList.toggle('open');
+        const expanded = parentLi.classList.contains('open');
+        toggle.setAttribute('aria-expanded', String(expanded));
+      });
+    });
+
+    // Mobile menu dropdowns
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(t => {
+      t.addEventListener('click', function (e) {
+        e.preventDefault();
+        const parent = t.parentElement;
+        parent.classList.toggle('open');
+      });
+    });
+
+    // Close any desktop dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      // keep dropdown open if click is inside a dropdown-toggle or dropdown
+      if (e.target.closest('.dropdown') || e.target.closest('.dropdown-toggle')) return;
+      document.querySelectorAll('.menu li.open').forEach(li => li.classList.remove('open'));
+      document.querySelectorAll('.menu .dropdown-toggle').forEach(a => a.setAttribute('aria-expanded', 'false'));
+    });
+
+    // Ensure menus reset on resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960) {
+        // ensure mobile menu hidden
+        if (mobileMenu) {
+          mobileMenu.classList.remove('open');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  </script>

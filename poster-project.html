@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Poster / Project Demo — ICMSET</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#05293a;
+      --gold:#fac13c;
+      --muted:#6b7280;
+      --surface:#f4f6f8;
+      --white:#fff;
+      --accent:#0c6ef6;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      color:#111;
+      background:#fff;
+      -webkit-font-smoothing:antialiased;
+      line-height:1.45;
+    }
+
+    /* TOP LINE */
+    .topbar{height:6px;background:#3b2720}
+
+    /* HEADER */
+    header{
+      position:sticky;top:0;z-index:1000;background:var(--white);
+      box-shadow:0 1px 0 rgba(0,0,0,0.04);
+    }
+    .nav-wrap{
+      max-width:1200px;margin:0 auto;padding:12px 18px;
+      display:flex;align-items:center;gap:20px;justify-content:space-between;
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy)}
+    .badge{background:var(--navy);color:var(--white);padding:6px 10px;border-radius:6px;font-weight:700;font-size:13px}
+    .tag{font-weight:600;color:var(--muted);font-size:14px}
+
+    nav{display:flex;align-items:center;gap:12px}
+    .menu{display:flex;gap:6px;list-style:none;margin:0;padding:0;align-items:center}
+    .menu li{position:relative}
+    .menu a{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;text-decoration:none;
+      color:var(--muted);font-weight:600;font-size:14px;border-radius:6px;white-space:nowrap;
+    }
+    .menu a:hover,.menu .active> a{ color:var(--navy);background:rgba(5,41,58,0.04) }
+
+    /* Dropdown */
+    .dropdown{
+      position:absolute;top:calc(100% + 10px);left:0;min-width:220px;background:var(--white);
+      box-shadow:0 10px 24px rgba(2,6,23,0.12);border-radius:8px;padding:8px 0;display:none;
+    }
+    /* visible when .open present */
+    .menu li.open > .dropdown{ display:block; }
+    .dropdown .section-title{padding:8px 14px;font-weight:700;font-size:12px;color:var(--navy);text-transform:uppercase}
+    .dropdown a{display:block;padding:8px 14px;color:#333;font-size:13px}
+    .dropdown a:hover{background:var(--surface)}
+
+    .mobile-toggle{display:none;background:transparent;border:0;padding:6px;cursor:pointer}
+    .mobile-toggle svg{width:22px;height:22px;color:var(--navy)}
+
+    /* ANNOUNCEMENT (kept for consistent site feel) */
+    .announcement{
+      background:#f6f7f8;border-top:1px solid rgba(2,6,23,0.02);border-bottom:1px solid rgba(2,6,23,0.02);
+      padding:18px 22px;text-align:center;position:relative;overflow:visible;
+    }
+    .announcement .text{max-width:1100px;margin:0 auto;color:#333;font-size:14px;line-height:1.5}
+    .announcement .highlight{display:block;margin-top:10px;font-weight:800;color:#d42020;font-size:16px;letter-spacing:0.6px}
+
+    /* Page shell (from Paper Submission styles) */
+    .page {
+      max-width:1000px;
+      margin:24px auto 80px;
+      padding:0 22px;
+    }
+
+    /* Page title (adapted for Poster) */
+    .page-header{
+      text-align:center;
+      margin-bottom:18px;
+    }
+    .page-header h1{
+      margin:0;font-size:28px;font-weight:800;color:var(--navy);
+      letter-spacing:0.6px;
+    }
+    .page-header p{
+      margin:8px 0 0;color:var(--muted);font-size:15px;
+    }
+
+    /* Content card look kept */
+    .card{
+      background:#fbfbfb;
+      border-radius:8px;
+      padding:26px;
+      box-shadow: 0 8px 26px rgba(2,6,23,0.04);
+      border:1px solid rgba(2,6,23,0.02);
+    }
+
+    /* Poster/Project specific typography + spacing */
+    .intro{
+      max-width:1000px;margin:10px auto;color:#333;font-size:15px;
+      line-height:1.6;
+    }
+    .sub-title{font-size:26px;margin-top:26px;margin-bottom:12px;color:#111;font-weight:800}
+
+    a.inline-link{color:var(--accent);text-decoration:underline}
+
+    /* checklist */
+    .check-list{margin:8px 0 18px;padding-left:18px;color:var(--muted)}
+    .check-list li{margin:8px 0; list-style:none; position:relative; padding-left:26px}
+    .check-list li:before{content:"\2713"; position:absolute; left:0; color:#217a3b; font-weight:700}
+
+    .info{margin-top:14px;color:var(--muted)}
+    .download{margin-top:18px}
+    .download a.sample{color:green;font-weight:700;text-decoration:underline}
+    .note{margin-top:12px;color:var(--accent);font-weight:700}
+
+    /* footer (kept simple) */
+    footer{border-top:1px solid rgba(0,0,0,0.04);padding:18px;color:var(--muted);font-size:14px;margin-top:36px;background:var(--white)}
+    footer .inner{max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 22px}
+
+    /* mobile menu slide-in (from Paper Submission) */
+    .mobile-menu {
+      position:fixed;
+      top:62px;
+      right:0;
+      width:320px;
+      height:calc(100% - 62px);
+      background:var(--white);
+      box-shadow:-8px 20px 40px rgba(2,6,23,0.12);
+      transform:translateX(110%);
+      transition:transform .26s ease;
+      z-index:1200;
+      padding:18px;
+      overflow:auto;
+    }
+    .mobile-menu.open{ transform:translateX(0) }
+    .mobile-menu a{ display:block; padding:10px 12px; color:var(--muted); border-radius:6px; text-decoration:none; margin-bottom:6px; font-weight:600 }
+    .mobile-menu .dropdown { position:static; box-shadow:none; padding-left:8px; display:none }
+    .mobile-menu .open > .dropdown { display:block }
+
+    /* Responsive */
+    @media (max-width:960px){
+      .page{margin:18px auto;padding:0 16px}
+      .mobile-toggle{display:inline-flex}
+      .menu{display:none}
+      .page-header h1{font-size:24px}
+      .sub-title{font-size:22px}
+    }
+    @media (max-width:480px){
+      .check-list{padding-left:14px}
+      .page-header h1{font-size:20px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar" aria-hidden="true"></div>
+
+  <header>
+    <div class="nav-wrap" role="banner">
+      <a class="brand" href="index.html">
+        <span class="badge">ICMSET</span>
+        <span class="tag">Conference 2026</span>
+      </a>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </button>
+
+        <!-- Desktop menu (hidden on small screens) -->
+        <nav aria-label="Main navigation">
+          <ul class="menu" id="mainMenu" role="menubar" aria-hidden="false">
+            <li><a href="index.html">Home</a></li>
+
+            <li>
+              <a href="#TRACKS" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Call For Papers ▾</a>
+              <div class="dropdown" role="menu" aria-label="Call for papers submenu">
+                <a href="paper.html">Paper</a>
+                <a href="poster-project.html">Poster / Project Demo</a>
+                <a href="proposal.html">Speakers</a>
+              </div>
+            </li>
+
+            <li><a href="paper-submission.html" class="active">Paper Submission</a></li>
+            <li><a href="important date.html">Important Dates</a></li>
+
+            <li>
+              <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Authors ▾</a>
+              <div class="dropdown" role="menu" aria-label="Call for papers submenu">
+                <a href="registation.html">Registration</a>
+                <a href="visa.html">VISA</a>
+              </div>
+            </li>
+
+            <li class="has-dropdown" id="committeesItem">
+              <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Committees ▾</a>
+              <div class="dropdown" role="menu" aria-label="Committees submenu">
+                <div class="section-title">Patrons</div>
+                <a href="partons.html">Patron 1</a>
+                <a href="convener.html">Convener</a>
+         `       <a href="#">Speakers</a>
+
+                <div class="section-title" style="margin-top:8px">Advisory Board</div>
+                <a href="internal.html">Internal</a>
+                <a href="international.html">International</a>
+                <a href="national.html">National</a>
+                <a href="contact.html">Others</a>
+
+                <div class="section-title" style="margin-top:8px">Reviewer Board</div>
+                <a href="reviewer.html">Reviewer 1</a>
+              </div>
+            </li>
+
+            <li><a href="publication.html">Publication</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="reviewer.html">Reviewer</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- mobile slide-in menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <a href="#">Home</a>
+
+    <div class="mobile-item">
+      <a href="#" class="mobile-dropdown-toggle">Call For Papers ▾</a>
+      <div class="dropdown">
+        <a href="#">Paper</a>
+        <a href="#">Poster / Project Demo</a>
+        <a href="#">Speakers</a>
+      </div>
+    </div>
+
+    <a href="#" class="active">Paper Submission</a>
+    <a href="#">Important Dates</a>
+
+    <div class="mobile-item">
+      <a href="#" class="mobile-dropdown-toggle">Committees ▾</a>
+      <div class="dropdown">
+        <a href="#">Patron 1</a>
+        <a href="#">Convener</a>
+        <a href="#">Speakers</a>
+      </div>
+    </div>
+
+    <a href="#">Publication</a>
+    <a href="#">Contact</a>
+    <a href="#">Reviewer</a>
+  </div>
+
+  <!-- announcement -->
+  <section class="announcement" aria-hidden="true">
+    <div class="text" style="color:#ff0000; font-weight:bold;">ICMSET-2K26 — Call for papers open. See important dates for deadlines.</div>
+  </section>
+
+  <main class="page" role="main">
+    <div class="page-header">
+      <h1>POSTER / PROJECT DEMO</h1>
+      <p>Poster and Project Demo Session information &amp; submission guidelines</p>
+    </div>
+
+    <div class="card" role="region" aria-label="Poster and project demo info">
+      <div class="intro">
+        <p>
+          Poster and Project Demo Session is to provide a forum to address new applications or techniques based on upcoming research challenges and innovative approaches in the fields of Engineering. The main aim is to collaborate between Industry and Academia. This serves as a platform for Students, Researchers and Developers from various industries to showcase their innovations and experimental results which paves direction for future and extensive work.
+        </p>
+      </div>
+
+      <!-- POSTER -->
+      <section aria-labelledby="posterHeading">
+        <h2 id="posterHeading" class="sub-title">POSTER</h2>
+
+        <p>
+          The participants are asked to submit a concise report which describes the prime focus and the main contributions of the poster. Proposals should be in
+          <a class="inline-link" href="#">Single-column format</a> with a <strong>maximum of 3 pages</strong> and should contain the following:
+        </p>
+
+        <ul class="check-list" aria-hidden="false">
+          <li>Author details (Name, Dept, College Name, Guide Name (not mandatory))</li>
+          <li>Objectives</li>
+          <li>Problem Statement</li>
+          <li>Novelty</li>
+          <li>Social Benefits</li>
+          <li>Design (Architecture/System)</li>
+          <li>Result &amp; Discussion (If Possible)</li>
+          <li>Conclusion</li>
+        </ul>
+
+        <p class="info">
+          Posters are evaluated by a panel of academia based on creativity, originality, presentation and audience appeal. Posters must be submitted to
+          <a class="inline-link" href="mailto:ICMSET@panimalar.ac.in">ICMSET@panimalar.ac.in</a>.
+          The accepted posters will be published in the conference proceedings and considered for the <strong>Best Poster Award with certificate</strong>.
+        </p>
+
+        <p class="info"><strong>Poster Display Size:</strong> The accepted posters should be presented in A2 paper size only. Participants are responsible to bring their own accessories for the presentation.</p>
+      </section>
+
+      <!-- PROJECT DEMO -->
+      <section aria-labelledby="projectHeading">
+        <h2 id="projectHeading" class="sub-title">PROJECT DEMO</h2>
+
+        <p>
+          Student, Researchers and Developers from industries are encouraged to submit project demo proposals and should contain the following:
+        </p>
+
+        <ul class="check-list">
+          <li>Project Title</li>
+          <li>Problem Statement</li>
+          <li>Objective of the work</li>
+          <li>Design</li>
+          <li>Summary of application</li>
+          <li>Preliminary results</li>
+          <li>Conclusion</li>
+          <li>Bibliography</li>
+        </ul>
+
+        <p class="info">
+          Project proposals should be in <a class="inline-link" href="#">Single-column format</a> with a <strong>maximum of 4 pages</strong> and submissions should be made to
+          <a class="inline-link" href="mailto:ICMSET@panimalar.ac.in">ICMSET@panimalar.ac.in</a>.
+          Authors must clearly describe requirements regarding electronics support, power strips, etc., required for the demonstration.
+        </p>
+
+        <p class="info">
+          Each project entry will be assessed by a judging panel consisting of members from industry and academia. The panel will evaluate Creativity, Originality, Engineering Design, Societal Applications, Presentation, Demonstration and Audience appeal. The accepted projects will be published in the conference proceedings and considered for the <strong>Best Project Award with certificate</strong>.
+        </p>
+
+        <div class="download" role="region" aria-label="Downloads">
+          <p><a class="sample" href="/files/sample-poster.pdf" download>Download Sample Paper...</a></p>
+          <p class="note">Note: The last date for Poster/Project demo proposal is on or before <strong>March 15, 2022</strong>. The posters must be in JPEG and PDF format only.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div><strong style="color:var(--navy)">ICMSET 2026</strong> — Panimalar Engineering College</div>
+      <div style="color:var(--muted);font-size:13px;">© 2026 All rights reserved</div>
+    </div>
+  </footer>
+
+  <script>
+    // MOBILE MENU
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (mobileToggle && mobileMenu) {
+      mobileToggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+        mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      // close mobile menu when user clicks outside
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+          mobileMenu.classList.remove('open');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Generic dropdown toggle: works for desktop & mobile
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        const parentLi = toggle.closest('li');
+        if (!parentLi) return;
+        parentLi.classList.toggle('open');
+        const expanded = parentLi.classList.contains('open');
+        toggle.setAttribute('aria-expanded', String(expanded));
+      });
+    });
+
+    // Mobile menu dropdowns
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(t => {
+      t.addEventListener('click', function (e) {
+        e.preventDefault();
+        const parent = t.parentElement;
+        parent.classList.toggle('open');
+      });
+    });
+
+    // Close any desktop dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.dropdown') || e.target.closest('.dropdown-toggle')) return;
+      document.querySelectorAll('.menu li.open').forEach(li => li.classList.remove('open'));
+      document.querySelectorAll('.menu .dropdown-toggle').forEach(a => a.setAttribute('aria-expanded', 'false'));
+    });
+
+    // Ensure menus reset on resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960) {
+        if (mobileMenu) {
+          mobileMenu.classList.remove('open');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
